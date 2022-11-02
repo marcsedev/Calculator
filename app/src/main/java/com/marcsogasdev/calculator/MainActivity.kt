@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onDigit(view: View) {
-        Toast.makeText(this, "Button clicked", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Button clicked", Toast.LENGTH_SHORT).show()
 
         //take the number of button and put on tvInput
         tvInput?.append((view as Button).text)
@@ -60,23 +60,35 @@ class MainActivity : AppCompatActivity() {
 
     fun onOperator(view: View) {
         tvInput?.text?.let {
-            it
-        if (lastNumeric && !isOperatorAdded(it.toString())){
-            tvInput?.append((view as Button).text)
+            if (lastNumeric && !isOperatorAdded(it.toString())){
+                tvInput?.append((view as Button).text)
+                lastNumeric = false
+                lastDot = false
+            }
         }
     }
-}
 
 
     private fun isOperatorAdded(value:String) : Boolean{
-        return if (value.startsWith("")){
+        return if (value.startsWith("-")){
             false
         }else{
             value.contains("/")
-                    || value.contains("*")
-                    || value.contains("+")
-                    || value.contains("-")
-                    //|| value.contains(".")
+                || value.contains("*")
+                || value.contains("+")
+                || value.contains("-")
+                //|| value.contains(".")
         }
     }
+
+    fun onEqual(view : View){
+        if(lastNumeric){
+            var tvValue = tvInput?.text.toString()
+
+        }
+
+    }
+
+
+
 }
